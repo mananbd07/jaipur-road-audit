@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#020617" />
+    <title>SadakSatya — Jaipur Road Audit</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIINfQHczGJ7adV6nC5YBf8YBJOlnKsPtlI=" crossorigin="" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = { theme: { extend: { fontFamily: { display: ['Manrope', 'sans-serif'], mono: ['DM Mono', 'monospace'] } } } };
+    </script>
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body class="min-h-screen bg-slate-950 font-display text-slate-100 antialiased">
+    <div class="page-glow"></div>
+    <header class="sticky top-0 z-30 border-b border-slate-800/90 bg-slate-950/90 backdrop-blur">
+      <div class="mx-auto flex max-w-[1600px] flex-wrap items-center justify-between gap-3 px-4 py-3 lg:px-6">
+        <div class="flex items-center gap-3">
+          <div class="brand-mark" aria-hidden="true">SS</div>
+          <div>
+            <h1 class="text-base font-extrabold tracking-tight text-white sm:text-lg">SadakSatya <span class="text-amber-400">— Jaipur Road Audit</span></h1>
+            <p class="hidden text-[10px] font-medium uppercase tracking-[0.16em] text-slate-400 sm:block">Live Web Data via Scrapingdog × Autonomous ThinkCentre Vision Rover</p>
+          </div>
+        </div>
+        <div class="flex flex-wrap items-center gap-2 text-xs">
+          <button id="poll-toggle" class="live-control" type="button" aria-pressed="false"><span class="live-dot"></span><span id="poll-label">Live Rover Feed · 5s</span><span class="text-slate-400">Pause</span></button>
+          <span id="scrapingdog-mode" class="status-pill status-amber">Scrapingdog: Checking…</span>
+          <button id="sync-now" class="btn btn-secondary" type="button">Sync Scrapingdog Now</button>
+          <button id="open-simulator" class="btn btn-primary" type="button">Simulate Rover Scan</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="relative mx-auto max-w-[1600px] px-4 py-5 lg:px-6 lg:py-6">
+      <section aria-label="Executive metrics" class="grid gap-3 sm:grid-cols-2 xl:grid-cols-5">
+        <article class="metric-card"><p>Public Budget Audited</p><strong id="metric-budget">—</strong><small id="metric-claims">Loading claims…</small></article>
+        <article class="metric-card metric-risk"><p>Public Funds at Risk</p><strong id="metric-risk">—</strong><small id="metric-risk-caption">No audit data</small></article>
+        <article class="metric-card"><p>Active Discrepancies</p><strong id="metric-discrepancies">—</strong><small>Requires action</small></article>
+        <article class="metric-card"><p>Potholes Confirmed</p><strong id="metric-potholes">—</strong><small>Across rover scans</small></article>
+        <article class="metric-card"><p>Scrapingdog API Calls</p><strong id="metric-calls">—</strong><small id="metric-credits">Estimated credits: —</small></article>
+      </section>
+
+      <section class="mt-5 grid gap-5 xl:grid-cols-5">
+        <article class="panel min-w-0 xl:col-span-3">
+          <div class="panel-heading">
+            <div><p class="eyebrow">Spatial accountability</p><h2>Jaipur Audit Map</h2></div>
+            <div id="map-filters" class="flex flex-wrap gap-1.5" role="group" aria-label="Map layers">
+              <button class="filter-chip is-active" data-map-filter="all" type="button">All</button>
+              <button class="filter-chip" data-map-filter="discrepancies" type="button">Discrepancies</button>
+              <button class="filter-chip" data-map-filter="claims" type="button">Gov Tenders</button>
+              <button class="filter-chip" data-map-filter="clear" type="button">Verified Clear</button>
+            </div>
+          </div>
+          <div id="audit-map" aria-label="Interactive map of Jaipur road audits"></div>
+          <div class="map-legend"><span><i class="legend-dot bg-blue-500"></i>Gov claim</span><span><i class="legend-dot bg-red-500"></i>Unfixed</span><span><i class="legend-dot bg-orange-500"></i>Post-repair</span><span><i class="legend-dot bg-yellow-400"></i>Unreported</span><span><i class="legend-dot bg-emerald-500"></i>Clear</span></div>
+        </article>
+
+        <aside class="panel xl:col-span-2">
+          <div class="panel-heading"><div><p class="eyebrow">Public-web monitoring</p><h2>Scrapingdog Pipeline</h2></div><span id="pipeline-mode" class="status-pill status-slate">Idle</span></div>
+          <form id="zone-sync-form" class="space-y-3">
+            <label class="field-label" for="zone-input">Zone signal</label>
+            <div class="quick-zones" id="quick-zones">
+              <button type="button" data-zone="Sitapura / JECRC 302022">Sitapura / JECRC</button>
+              <button type="button" data-zone="Malviya Nagar 302017">Malviya Nagar</button>
+              <button type="button" data-zone="Mahal Road Zone-14">Mahal Road</button>
+              <button type="button" data-zone="Tonk Road 302018">Tonk Road</button>
+            </div>
+            <div class="flex gap-2"><input id="zone-input" class="input" name="zone" placeholder="Custom Jaipur road or pincode" autocomplete="off" /><button id="zone-sync-submit" class="btn btn-primary shrink-0" type="submit">Run 4-API Sync</button></div>
+          </form>
+
+          <div class="mt-5 grid grid-cols-2 gap-2" id="pipeline-steps">
+            <div class="pipeline-step"><span class="mono">/google</span><strong data-endpoint="google">0</strong><small>Tender discovery</small></div>
+            <div class="pipeline-step"><span class="mono">/scrape</span><strong data-endpoint="scrape">0</strong><small>Page extraction</small></div>
+            <div class="pipeline-step"><span class="mono">/google_news/v2</span><strong data-endpoint="google_news/v2">0</strong><small>Road updates</small></div>
+            <div class="pipeline-step"><span class="mono">/google_maps</span><strong data-endpoint="google_maps">0</strong><small>Zone geocoding</small></div>
+          </div>
+
+          <div class="mt-5"><div class="mb-2 flex items-center justify-between"><h3 class="section-title">Recent Scrapingdog Runs</h3><span id="run-count" class="text-xs text-slate-500">0 records</span></div><div class="table-shell runs-shell"><table><thead><tr><th>Endpoint</th><th>Query / URL</th><th>Mode</th><th>HTTP</th><th>Found</th><th>ms</th></tr></thead><tbody id="runs-body"><tr><td colspan="6" class="empty-row">Waiting for API activity…</td></tr></tbody></table></div></div>
+        </aside>
+      </section>
+
+      <section class="mt-5 panel">
+        <div class="panel-heading"><div><p class="eyebrow">Rover evidence ledger</p><h2>Live Discrepancy Feed &amp; Accountability Kit</h2></div><span id="audit-count" class="status-pill status-slate">0 audits</span></div>
+        <div id="audit-feed" class="audit-grid"><div class="empty-feed"><div class="empty-icon">⌁</div><h3>Waiting for ThinkCentre Rover telemetry</h3><p>Send a scan to <code>POST /api/ingest/detection</code>, or click <strong>Simulate Rover Scan</strong> to test the full accountability flow.</p></div></div>
+      </section>
+
+      <section class="mt-5 panel">
+        <div class="panel-heading claims-heading"><div><p class="eyebrow">Public records</p><h2>Scraped Government Claims Directory</h2></div><div class="flex flex-wrap gap-2"><input id="claim-search" class="input input-small" placeholder="Search road, tender, pincode…" /><select id="authority-filter" class="input input-small"><option value="">All authorities</option><option value="JDA">JDA</option><option value="Jaipur Nagar Nigam">Jaipur Nagar Nigam</option><option value="Rajasthan PWD">Rajasthan PWD</option></select></div></div>
+        <div class="table-shell claims-shell"><table><thead><tr><th>Tender ref</th><th>Authority</th><th>Zone / road</th><th>PIN</th><th>Budget</th><th>Status</th><th>Source</th></tr></thead><tbody id="claims-body"><tr><td colspan="7" class="empty-row">Loading public claims…</td></tr></tbody></table></div>
+      </section>
+    </main>
+
+    <dialog id="simulator-modal" class="modal-shell">
+      <form id="simulator-form" class="modal-card" method="dialog">
+        <div class="modal-heading"><div><p class="eyebrow">Safe local demo</p><h2>Simulate Rover Scan</h2><p class="mt-1 text-sm text-slate-400">Submits a real multipart scan to the audit API.</p></div><button class="icon-button" type="button" data-close-modal="simulator-modal" aria-label="Close simulator">×</button></div>
+        <div id="simulator-presets" class="quick-zones mt-4"><button type="button" data-preset="sitapura">Sitapura / Mahal Road</button><button type="button" data-preset="malviya">Malviya Nagar Ward 75</button><button type="button" data-preset="tonk">Tonk Road</button></div>
+        <div class="mt-4 grid gap-3 sm:grid-cols-2">
+          <label class="field-label sm:col-span-2">Road tag<input class="input mt-1" name="road_tag" required value="Sitapura Industrial Area / Mahal Road" /></label>
+          <label class="field-label">Pincode<input class="input mt-1" name="pincode" required value="302022" /></label>
+          <label class="field-label">Pothole count<input class="input mt-1" type="number" name="pothole_count" min="0" max="99" value="4" required /></label>
+          <label class="field-label">Latitude<input class="input mt-1" type="number" name="lat" step="any" value="26.7870" /></label>
+          <label class="field-label">Longitude<input class="input mt-1" type="number" name="lng" step="any" value="75.8227" /></label>
+          <label class="field-label">Severity<select class="input mt-1" name="severity"><option value="critical">Critical</option><option value="medium">Medium</option><option value="low">Low</option><option value="none">None</option></select></label>
+          <label class="field-label">Road condition / 100<input class="input mt-1" type="number" name="road_condition_score" min="0" max="100" value="28" required /></label>
+          <label class="field-label sm:col-span-2">Rover API key <span class="normal-case text-slate-500">(optional; kept only in this browser session)</span><input id="rover-key" class="input mt-1 font-mono" type="password" autocomplete="off" placeholder="X-Rover-Key" /></label>
+          <label class="field-label sm:col-span-2">Optional snapshot<input id="snapshot-input" class="input mt-1 file:mr-3 file:rounded-md file:border-0 file:bg-slate-800 file:px-3 file:py-1.5 file:text-xs file:font-semibold file:text-slate-200" type="file" accept="image/jpeg,image/png,image/webp" /></label>
+        </div>
+        <label class="mt-3 flex cursor-pointer items-center gap-2 text-sm text-slate-300"><input id="generate-mock" class="accent-amber-400" type="checkbox" checked />Generate annotated mock pothole image when no file is selected</label>
+        <div class="mt-5 flex justify-end gap-2"><button class="btn btn-secondary" type="button" data-close-modal="simulator-modal">Cancel</button><button id="simulator-submit" class="btn btn-primary" type="submit">Submit Rover Evidence</button></div>
+      </form>
+    </dialog>
+
+    <dialog id="lightbox-modal" class="lightbox-shell"><button class="icon-button lightbox-close" type="button" data-close-modal="lightbox-modal" aria-label="Close image">×</button><img id="lightbox-image" alt="Rover road snapshot" /></dialog>
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script type="module" src="/js/app.js"></script>
+  </body>
+</html>

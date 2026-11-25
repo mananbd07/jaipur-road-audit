@@ -1,0 +1,9 @@
+INSERT OR IGNORE INTO gov_claims
+  (source_type, tender_ref, authority, zone_or_road, pincode, lat, lng, budget_inr, claimed_status, source_url, raw_snippet, published_date)
+VALUES
+  ('tender', 'JDA-SITAPURA-2025-144', 'JDA', 'Sitapura Industrial Area / Vidhani Road near JECRC University', '302022', 26.7870, 75.8227, 14700000, 'in_progress', 'https://jda.rajasthan.gov.in/', 'Drainage-linked patch repair and resurfacing for the Sitapura-Vidhani corridor near JECRC University.', '2025-10-18'),
+  ('tender', 'JNN-MAHAL-2025-088', 'Jaipur Nagar Nigam', 'Mahal Road, Zone-14', '302022', 26.7969, 75.8402, 9000000, 'claimed_fixed', 'https://jaipurmc.org/', 'Mahal Road Zone-14 pothole rectification, patchwork and road marking package.', '2025-09-29'),
+  ('tender', 'JNN-MN-2025-210', 'Jaipur Nagar Nigam', 'Malviya Nagar Wards 73-83', '302017', 26.8547, 75.8118, 11200000, 'in_progress', 'https://jaipurmc.org/', 'Ward-level asphalt patch repair across Malviya Nagar Wards 73 through 83.', '2025-11-03'),
+  ('tender', 'PWD-TONK-2025-076', 'Rajasthan PWD', 'Tonk Road service lane, Gopalpura to Durgapura', '302018', 26.8466, 75.7983, 22500000, 'sanctioned', 'https://pwd.rajasthan.gov.in/', 'Strengthening and pothole treatment for Tonk Road service-lane sections.', '2025-08-22'),
+  ('tender', 'JNN-MANSAROVAR-2025-125', 'Jaipur Nagar Nigam', 'Mansarovar Sector 7 and New Sanganer Road', '302020', 26.8501, 75.7630, 7600000, 'claimed_fixed', 'https://jaipurmc.org/', 'Road renewal and post-monsoon patch repair in Mansarovar.', '2025-10-09'),
+  ('tender', 'JDA-VIDYADHAR-2025-063', 'JDA', 'Vidyadhar Nagar Sector 2 and Alankar Road', '302039', 26.9615, 75.7796, 9800000, 'sanctioned', 'https://jda.rajasthan.gov.in/', 'Carriageway repair and pothole filling around Vidyadhar Nagar Sector 2.', '2025-09-14');
