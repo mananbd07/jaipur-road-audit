@@ -1,0 +1,12 @@
+# Core edge runtime (CPU-friendly)
+opencv-python-headless>=4.8
+numpy>=1.24
+requests>=2.31
+python-dotenv>=1.0
+flask>=3.0
+qrcode[pil]>=7.4
+
+# Optional: needed only for the indicated workflow.
+huggingface-hub>=0.20
+onnxruntime>=1.16
+# ultralytics>=8.0  # optional PT model engine; the default ONNX path does not need PyTorch

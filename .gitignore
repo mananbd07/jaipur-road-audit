@@ -3,5 +3,13 @@ node_modules/
 dist/
 .dev.vars
 .env*
+!rover/.env.example
 *.log
 *.sqlite*
+rover/.venv/
+rover/__pycache__/
+rover/models/*.pt
+rover/models/*.onnx
+rover/.env
+rover/offline_queue/
+rover/snapshots_local/

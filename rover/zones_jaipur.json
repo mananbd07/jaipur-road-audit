@@ -1,0 +1,56 @@
+[
+  {
+    "id": "SITAPURA_302022",
+    "name": "Sitapura Industrial Area / Vidhani Road near JECRC University",
+    "road_tag": "Sitapura Industrial Area / Vidhani Road near JECRC University",
+    "pincode": "302022",
+    "lat": 26.787,
+    "lng": 75.8227,
+    "qr": "ZONE:SITAPURA_302022"
+  },
+  {
+    "id": "MALVIYA_302017",
+    "name": "Malviya Nagar Wards 73–83",
+    "road_tag": "Malviya Nagar Wards 73-83",
+    "pincode": "302017",
+    "lat": 26.8547,
+    "lng": 75.8118,
+    "qr": "ZONE:MALVIYA_302017"
+  },
+  {
+    "id": "MAHAL_302022",
+    "name": "Mahal Road Zone-14",
+    "road_tag": "Mahal Road, Zone-14",
+    "pincode": "302022",
+    "lat": 26.7969,
+    "lng": 75.8402,
+    "qr": "ZONE:MAHAL_302022"
+  },
+  {
+    "id": "TONK_302018",
+    "name": "Tonk Road service lane, Gopalpura to Durgapura",
+    "road_tag": "Tonk Road service lane, Gopalpura to Durgapura",
+    "pincode": "302018",
+    "lat": 26.8466,
+    "lng": 75.7983,
+    "qr": "ZONE:TONK_302018"
+  },
+  {
+    "id": "MANSAROVAR_302020",
+    "name": "Mansarovar Sector 7 and New Sanganer Road",
+    "road_tag": "Mansarovar Sector 7 and New Sanganer Road",
+    "pincode": "302020",
+    "lat": 26.8501,
+    "lng": 75.763,
+    "qr": "ZONE:MANSAROVAR_302020"
+  },
+  {
+    "id": "VDN_302039",
+    "name": "Vidyadhar Nagar Sector 2 and Alankar Road",
+    "road_tag": "Vidyadhar Nagar Sector 2 and Alankar Road",
+    "pincode": "302039",
+    "lat": 26.9615,
+    "lng": 75.7796,
+    "qr": "ZONE:VDN_302039"
+  }
+]
