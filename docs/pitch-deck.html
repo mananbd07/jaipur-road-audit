@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SadakSatya — Hackathon Pitch Deck</title>
+  <style>
+    :root { --ink:#e5edf8; --muted:#9caec4; --bg:#020617; --panel:#0f172a; --line:#253552; --amber:#fbbf24; --red:#fb7185; --green:#34d399; --blue:#60a5fa; }
+    * { box-sizing:border-box; } body { margin:0; background:#020617; color:var(--ink); font:clamp(15px,1.45vw,22px)/1.35 Inter,ui-sans-serif,system-ui,sans-serif; overflow:hidden; }
+    .deck { height:100vh; } .slide { min-height:100vh; display:none; position:relative; padding:6.2vh 8vw 7vh; background:radial-gradient(circle at 85% 9%,#172554 0,transparent 30%),radial-gradient(circle at 5% 90%,#3b1820 0,transparent 25%),var(--bg); }
+    .slide.active { display:flex; flex-direction:column; } .eyebrow { color:var(--amber); font-size:.72em; font-weight:800; letter-spacing:.16em; text-transform:uppercase; } h1 { max-width:1000px; margin:.35em 0 .25em; font-size:clamp(40px,6vw,90px); line-height:.98; letter-spacing:-.055em; } h2 { margin:.35em 0; font-size:clamp(31px,4vw,58px); line-height:1.03; letter-spacing:-.04em; } h3 { margin:.25em 0; font-size:1.08em; } p { max-width:1020px; margin:.45em 0; color:#cbd5e1; } strong { color:#fff; } .accent { color:var(--amber); } .red { color:var(--red); } .green { color:var(--green); } .blue { color:var(--blue); }
+    .grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px; margin-top:2.2vh; } .grid.three { grid-template-columns:repeat(3,minmax(0,1fr)); } .card { border:1px solid var(--line); border-radius:18px; background:rgba(15,23,42,.82); padding:1.1em 1.2em; } .card p { font-size:.82em; } .stat { color:var(--amber); font-size:clamp(36px,5vw,74px); font-weight:800; line-height:1; letter-spacing:-.06em; }
+    .flow { display:flex; align-items:stretch; gap:9px; margin-top:3vh; } .flow .node { flex:1; min-width:0; padding:.9em; border:1px solid var(--line); border-radius:14px; background:#0f172a; font-size:.78em; } .flow .arrow { align-self:center; color:var(--amber); font-size:1.5em; } .mono { font:700 .72em ui-monospace,SFMono-Regular,Consolas,monospace; color:var(--blue); } .tag { display:inline-block; margin:.35em .25em 0 0; padding:.34em .65em; border-radius:999px; background:#172554; color:#bfdbfe; font-size:.65em; }
+    .verdicts { display:grid; grid-template-columns:repeat(2,1fr); gap:10px; margin-top:2vh; } .verdict { padding:.8em; border-left:4px solid var(--amber); background:#101a2c; font:.7em ui-monospace,monospace; } .verdict:nth-child(2){border-color:var(--red)}.verdict:nth-child(3){border-color:var(--blue)}.verdict:nth-child(4){border-color:var(--green)}
+    .url { overflow-wrap:anywhere; color:#bfdbfe; font-weight:800; font-size:clamp(18px,2.2vw,33px); } .check { display:flex; gap:.65em; margin:.55em 0; color:#dbeafe; } .check::before { content:'✓'; color:var(--green); font-weight:900; } .footer { position:absolute; left:8vw; right:8vw; bottom:2.5vh; display:flex; justify-content:space-between; color:var(--muted); font-size:.58em; } .controls { position:fixed; z-index:3; right:18px; bottom:18px; display:flex; gap:8px; } button { border:1px solid #385075; border-radius:9px; background:#101b30; color:white; padding:9px 12px; cursor:pointer; } button:hover { background:#1e3a5f; }
+    @media (max-width:750px) { .grid,.grid.three { grid-template-columns:1fr; gap:10px; } .flow { flex-wrap:wrap; } .flow .arrow { transform:rotate(90deg); width:100%; text-align:center; } .slide { overflow:auto; padding:7vh 7vw; } }
+    @media print { @page { size:16in 9in; margin:0; } body { overflow:visible; background:#020617; } .deck { height:auto; } .slide,.slide.active { display:flex !important; width:16in; height:9in; min-height:9in; overflow:hidden; break-after:page; page-break-after:always; padding:.56in .78in .56in; } .controls { display:none; } }
+  </style>
+</head>
+<body>
+  <main class="deck">
+    <section class="slide active">
+      <div class="eyebrow">Open Innovation · Build with Web Data</div><h1>SadakSatya</h1><h2>Auditing Jaipur’s roads with <span class="accent">live web data</span> & edge AI</h2>
+      <p>Team: <strong>[Member 1] · [Member 2] · [Member 3]</strong></p><p class="url">jaipur-road-audit.mananbd07.workers.dev</p>
+      <div class="card" style="margin-top:auto;max-width:850px"><strong>One question:</strong> when a road-repair tender says “fixed,” can citizens see ground truth?</div><div class="footer"><span>SadakSatya · JECRC Hackathon</span><span>1 / 8</span></div>
+    </section>
+    <section class="slide">
+      <div class="eyebrow">The problem</div><h2>₹ crores can be sanctioned.<br><span class="red">Physical verification is still manual.</span></h2>
+      <div class="grid"><div class="card"><div class="stat">₹1.47 Cr</div><h3>Sitapura · 302022</h3><p>JDA-SITAPURA-2025-144 is a public repair claim. A tender status alone cannot show today’s potholes.</p></div><div class="card"><div class="stat">73–83</div><h3>Malviya Nagar wards</h3><p>Citizens face dispersed repair claims, changing road conditions, and no shared evidence loop.</p></div></div><p style="margin-top:auto">The gap: public spending data and street-level condition data rarely meet in one explainable system.</p><div class="footer"><span>Public claim ≠ verified road condition</span><span>2 / 8</span></div>
+    </section>
+    <section class="slide">
+      <div class="eyebrow">Our solution</div><h2>Close the loop between <span class="blue">what tenders claim</span> and <span class="green">what roads look like.</span></h2>
+      <div class="flow"><div class="node"><b>Public web</b><br><span class="mono">Scrapingdog</span><br>tenders · news · maps</div><div class="arrow">→</div><div class="node"><b>Structured claim</b><br>road · pincode · budget<br>status · source</div><div class="arrow">↔</div><div class="node"><b>ThinkCentre rover</b><br>vision + QR zone tag<br>JPEG + telemetry</div><div class="arrow">→</div><div class="node"><b>Live audit</b><br>deterministic verdict<br>human action kit</div></div>
+      <div class="grid three" style="margin-top:auto"><div class="card"><b>Explainable</b><p>Rules, source links, and evidence—not opaque scores.</p></div><div class="card"><b>Edge-ready</b><p>CPU ONNX inference and an offline retry queue.</p></div><div class="card"><b>Human-led</b><p>Drafts action; humans review and submit.</p></div></div><div class="footer"><span>Evidence joins evidence</span><span>3 / 8</span></div>
+    </section>
+    <section class="slide">
+      <div class="eyebrow">Best use of Scrapingdog</div><h2>Four APIs build a public-claim trail.</h2>
+      <div class="flow"><div class="node"><span class="mono">/google</span><br>Discover Jaipur tenders</div><div class="arrow">→</div><div class="node"><span class="mono">/scrape</span><br>Markdown +<br><b>ai_extract_rules</b></div><div class="arrow">→</div><div class="node"><span class="mono">/google_news/v2</span><br>Repair claims + dates</div><div class="arrow">→</div><div class="node"><span class="mono">/google_maps</span><br>Geocode road / zone</div></div>
+      <div class="grid"><div class="card"><h3>Credit-safe by design</h3><span class="tag">max_scrape_pages</span><span class="tag">timeouts</span><span class="tag">retries</span><span class="tag">fallback mode</span><p>Bounded detail-page work prevents a demo from becoming an uncontrolled crawl.</p></div><div class="card"><h3>Telemetry, not hand-waving</h3><p><span class="mono">scrape_runs</span> logs endpoint, status, duration, records, mode, and estimated credits for each sync.</p></div></div><div class="footer"><span>Discovery → extraction → corroboration → geography</span><span>4 / 8</span></div>
+    </section>
+    <section class="slide">
+      <div class="eyebrow">Edge hardware & computer vision</div><h2>A Lenovo ThinkCentre becomes a <span class="accent">portable road-audit kit.</span></h2>
+      <div class="grid three"><div class="card"><h3>1 · See</h3><p>Webcam on a motorized chassis captures road or tabletop frames.</p><span class="tag">Wi-Fi</span><span class="tag">USB webcam</span></div><div class="card"><h3>2 · Understand</h3><p>OpenCV CLAHE, denoise, and road ROI feed Indian-road YOLOv8s ONNX via <span class="mono">onnxruntime</span>.</p></div><div class="card"><h3>3 · Attribute</h3><p>QR road signs select Jaipur zones. A tabletop fallback and local queue preserve the demo when conditions change.</p></div></div>
+      <div class="card" style="margin-top:auto"><span class="mono">frame → preprocess → ONNX / fallback → annotate → JPEG + JSON multipart → cloud audit</span></div><div class="footer"><span>Fast CPU vision · transparent fallback</span><span>5 / 8</span></div>
+    </section>
+    <section class="slide">
+      <div class="eyebrow">Comparison engine & accountability</div><h2>Four deterministic outcomes.<br><span class="green">One ethical next action.</span></h2>
+      <div class="verdicts"><div class="verdict">DISCREPANCY_UNFIXED<br><small>Damage remains with a repair claim.</small></div><div class="verdict">POST_REPAIR_FAILURE<br><small>Damage remains after “fixed.”</small></div><div class="verdict">UNREPORTED_DAMAGE<br><small>Damage lacks a matching claim.</small></div><div class="verdict">VERIFIED_CLEAR<br><small>No potholes + healthy score.</small></div></div>
+      <div class="grid" style="margin-top:auto"><div class="card"><h3>Accountability Kit</h3><p>Formal grievance draft for Rajasthan Sampark / PWD Sugam Path plus an X intent URL.</p></div><div class="card"><h3>Ethical guardrail</h3><p>No form-botting, no automatic posting, no automatic allegation. Every action is human-reviewed.</p></div></div><div class="footer"><span>Explainable evidence → reviewable action</span><span>6 / 8</span></div>
+    </section>
+    <section class="slide">
+      <div class="eyebrow">Live demo flow</div><h2>Four checkpoints judges can watch<br>on their own phones.</h2>
+      <div class="grid"><div><div class="check">Open the live Jaipur audit platform.</div><div class="check">Scan a printed QR road sign; watch the rover change zone.</div><div class="check">See edge telemetry and annotated potholes in the wireless HUD.</div><div class="check">Watch the matched claim, verdict, map point, and Accountability Kit.</div></div><div class="card"><h3>Open now</h3><p class="url">https://jaipur-road-audit.mananbd07.workers.dev</p><p>Live URL is intentionally easy to type or share. The rover HUD is available on the ThinkCentre’s local network at <span class="mono">:5050</span>.</p></div></div><div class="footer"><span>Phone-friendly · live evidence trail</span><span>7 / 8</span></div>
+    </section>
+    <section class="slide">
+      <div class="eyebrow">Impact & roadmap</div><h2>From one rover to a <span class="amber">daily city-wide audit layer.</span></h2>
+      <div class="grid three"><div class="card"><h3>Now</h3><p>Make repair promises testable, map visible discrepancies, and speed up human reporting.</p></div><div class="card"><h3>Next</h3><p>Mount edge kits on Jaipur Nagar Nigam garbage trucks and JCTSL buses for repeat coverage.</p></div><div class="card"><h3>Scale</h3><p>Trend road condition over time, prioritize inspections, and publish reviewable public evidence.</p></div></div>
+      <p style="margin-top:auto"><b>AI tools disclosure:</b> Gemini supported architecture/prompt design; OpenAI Codex supported code, documentation, and verification. Humans owned hardware integration, civic modeling, API orchestration, and final review.</p><div class="footer"><span>SadakSatya · public data, edge evidence, human accountability</span><span>8 / 8</span></div>
+    </section>
+  </main>
+  <div class="controls"><button id="previous" aria-label="Previous slide">←</button><button id="counter" aria-live="polite">1 / 8</button><button id="next" aria-label="Next slide">→</button><button id="fullscreen" aria-label="Toggle fullscreen">⛶</button></div>
+  <script>
+    const slides=[...document.querySelectorAll('.slide')]; let index=0;
+    function show(next){ index=(next+slides.length)%slides.length; slides.forEach((slide,i)=>slide.classList.toggle('active',i===index)); document.getElementById('counter').textContent=`${index+1} / ${slides.length}`; location.hash=`slide-${index+1}`; }
+    document.getElementById('previous').onclick=()=>show(index-1); document.getElementById('next').onclick=()=>show(index+1);
+    document.getElementById('fullscreen').onclick=()=>document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen();
+    document.addEventListener('keydown',event=>{ if(event.key==='ArrowRight'||event.key==='PageDown'||event.key===' '){event.preventDefault();show(index+1)} if(event.key==='ArrowLeft'||event.key==='PageUp'){event.preventDefault();show(index-1)} if(event.key==='f'||event.key==='F')document.getElementById('fullscreen').click(); });
+    const selected=Number(location.hash.replace('#slide-','')); if(Number.isInteger(selected)&&selected>=1&&selected<=slides.length) show(selected-1);
+  </script>
+</body>
+</html>
